@@ -7,7 +7,7 @@ function NavBar(){
                 <ul>
                     <li><a href="/">Vimal</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/contact">Varun</a></li>
                 </ul>
             </nav>
         </div>
