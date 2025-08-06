@@ -1,10 +1,12 @@
+import Welcome from "./components/General/welcome"
 import NavBar from "./components/Navbar/navbar"
 
 function Home(){
 
     return (
         <>
-            <NavBar/>
+            <NavBar a={50} b={20} c={50}/>
+            <Welcome username={"Varun"}/>
         </>
     )
 }
