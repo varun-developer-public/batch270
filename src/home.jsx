@@ -1,12 +1,12 @@
-import Welcome from "./components/General/welcome"
 import NavBar from "./components/Navbar/navbar"
-
+import ProductList from "./components/products/productList"
+import './index.css'
 function Home(){
 
     return (
         <>
-            <NavBar a={50} b={20} c={50}/>
-            <Welcome username={"Varun"}/>
+        <NavBar/>
+        <ProductList/>
         </>
     )
 }

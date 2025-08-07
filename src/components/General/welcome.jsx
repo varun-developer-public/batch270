@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 
 function Welcome({username}) {
 
-    let [user,setUser] = useState("Varun")
+    // let [user,setUser] = useState("Varun")
     
-  useEffect(()=>{
+  // useEffect(()=>{
 
-      // let user = "Varun";
-    console.log(user);//Varun
+  //     // let user = "Varun";
+  //   console.log(user);//Varun
 
-    console.log(user);//Varun
+  //   console.log(user);//Varun
     
     
-    setUser("Vimal")
-    console.log(user);//Vimal
-  })
+  //   setUser("Vimal")
+  //   console.log(user);//Vimal
+  // })
 
   return (
-    <div>Welcome {user}</div>
+    <div>Welcome {username}</div>
   )
 }
 
