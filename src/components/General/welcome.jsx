@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ButtonComponent } from "../products/productItem";
 
 function Welcome({username}) {
 
@@ -17,7 +18,8 @@ function Welcome({username}) {
   // })
 
   return (
-    <div>Welcome {username}</div>
+    <div>Welcome {username}
+    <ButtonComponent>Hiiiii</ButtonComponent></div>
   )
 }
 

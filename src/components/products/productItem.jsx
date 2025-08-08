@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
-function ProductItem({image,title,price}) {
+export const ButtonComponent = styled.button`
+background-color:pink;
+color:blue;
+padding:12px 8px;
+border-radius:8px;
+`
+
+
+
+
+function ProductItem({ image, title, price, stockStatus }) {
+  const [isStatus, setIsStatus] = useState(false);
+ useEffect(()=>{
+   if (stockStatus == "In Stock") {
+    setIsStatus(true);
+  } else {
+    setIsStatus(false);
+  }
+ },[])
+
+let padvalue = 50;
+
+ let styleobj = {
+  color:"rebeccapurple",
+  backgroundColor:"GrayText",
+  padding: `${padvalue}px`,
+}
   return (
-    <div>
-      <div className="w-70 max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <div className={!isStatus && `bg-gray-200`}>
+      <div className={`w-70 max-w-sm border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700`}>
         <a href="#">
           <img
             className="p-8 rounded-t-lg h-50"
@@ -69,6 +96,13 @@ function ProductItem({image,title,price}) {
               5.0
             </span>
           </div>
+          <div>
+            {isStatus ? (
+              <div className={`text-l font-bold my-5 text-emerald-500`}>
+                Available Status: {stockStatus}
+              </div>
+            ):(<div className={`text-l font-bold my-5 text-red-600`}>Product Not Available</div>)}
+          </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               &#8377; {price}
@@ -80,6 +114,7 @@ function ProductItem({image,title,price}) {
               Add to cart
             </a>
           </div>
+          <ButtonComponent>Read More</ButtonComponent>
         </div>
       </div>
     </div>

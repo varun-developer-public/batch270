@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductItem from './productItem'
+import './product.css'
 
 function ProductList() {
     const [data, setData]= useState(null)
@@ -19,7 +20,10 @@ function ProductList() {
                 <div className='fill-amber-50 h-100 py-3 px-4 gap-4.5 flex flex-wrap justify-center'>
                     {
                         data.map((item)=>{
-                            return <ProductItem image={item.thumbnail} title={item.title} price={(item.price*8).toPrecision(5)}/>
+                            return(
+                                    <ProductItem key={item.id} image={item.thumbnail} title={item.title} price={(item.price*8).toPrecision(5)} stockStatus={item.availabilityStatus}/>
+                            ) 
+                                
                         })
                     }
                 </div>
