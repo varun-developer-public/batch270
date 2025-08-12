@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
-import { ButtonComponent } from "../products/productItem";
+import ProductItem, { ButtonComponent } from "../products/productItem";
 
 function Welcome({username}) {
+   const [user,setUser] = useState('default')
+   const [demo,setDemo] = useState('default')
+  useEffect(()=>{
 
-    // let [user,setUser] = useState("Varun")
-    
-  // useEffect(()=>{
+    console.log(user);
+    return 
+  },[user,demo])
 
-  //     // let user = "Varun";
-  //   console.log(user);//Varun
-
-  //   console.log(user);//Varun
-    
-    
-  //   setUser("Vimal")
-  //   console.log(user);//Vimal
-  // })
-
+function demodemo(){
+  setDemo('demo')
+}
   return (
-    <div>Welcome {username}
-    <ButtonComponent>Hiiiii</ButtonComponent></div>
+ <>
+    <div onClick={demodemo}>
+      Welcome {user},Kumar
+    </div>
+    <div onClick={()=>setDemo("demo")}>
+      Welcome {demo},Kumar
+    </div>
+ </>
   )
 }
 
