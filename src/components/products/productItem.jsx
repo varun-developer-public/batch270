@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+// import { NoticeBoard } from "../../main";
+
 
 export const ButtonComponent = styled.button`
 background-color:pink;
@@ -21,6 +23,8 @@ function ProductItem({ image, title, price, stockStatus }) {
   }
  },[])
 
+
+// const infor =  useContext(NoticeBoard)
 let padvalue = 50;
 
  let styleobj = {
