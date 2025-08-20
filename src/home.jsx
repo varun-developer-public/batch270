@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Welcome from "./components/General/welcome";
-import NavBar from "./components/Navbar/navbar";
+import NavBar2 from "./components/Navbar/NavBar2";
 import ProductList from "./components/products/productList";
 import "./index.css";
 import Timer from "./components/General/timer";
@@ -10,6 +10,7 @@ import Profile from "./components/Dashboard/profile";
 import { AudioProvider } from "./context/AudioContent";
 import SongList from "./components/AudioPlayers/SongList";
 import PlayerControls from "./components/AudioPlayers/player";
+import MusicPlayerSlider from "./components/AudioPlayers/player";
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -34,11 +35,13 @@ function Home() {
     // </UserProvider>
 
     <AudioProvider>
-
-      <div>
-        <h1>Songs to Play</h1>
-        <SongList/>
-        <PlayerControls/>
+      <div className="h-screen bg-black text-amber-50">
+        <NavBar2 />
+        <div>
+          <h1>Songs to Play</h1>
+          <SongList />
+          <MusicPlayerSlider />
+        </div>
       </div>
     </AudioProvider>
   );
