@@ -11,6 +11,7 @@ import { AudioProvider } from "./context/AudioContent";
 import SongList from "./components/AudioPlayers/SongList";
 import PlayerControls from "./components/AudioPlayers/player";
 import MusicPlayerSlider from "./components/AudioPlayers/player";
+import Forms from "./components/Forms/forms";
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -34,16 +35,18 @@ function Home() {
     //   <Profile/>
     // </UserProvider>
 
-    <AudioProvider>
-      <div className="h-screen bg-black text-amber-50">
-        <NavBar2 />
-        <div>
-          <h1>Songs to Play</h1>
-          <SongList />
-          <MusicPlayerSlider />
-        </div>
-      </div>
-    </AudioProvider>
+    // <AudioProvider>
+    //   <div className="h-screen bg-black text-amber-50">
+    //     <NavBar2 />
+    //     <div>
+    //       <h1>Songs to Play</h1>
+    //       <SongList />
+    //       <MusicPlayerSlider />
+    //     </div>
+    //   </div>
+    // </AudioProvider>
+
+    <Forms/>
   );
 }
 
