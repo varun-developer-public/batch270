@@ -97,14 +97,9 @@ const TinyText = styled(Typography)({
 
 export default function MusicPlayerSlider() {
   
-  const { currentSong, pauseSong , playSong , prevSong , nextSong} = useContext(AudioContext);
+  const { currentSong, pauseSong , playSong , prevSong , nextSong , pause ,duration,position,seek,togglePlay,isPlaying,changeVolume,volume} = useContext(AudioContext);
 
 
-
-
-
-  const duration = 200; // seconds
-  const [position, setPosition] = React.useState(32);
   const [paused, setPaused] = React.useState(false);
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
@@ -143,7 +138,7 @@ export default function MusicPlayerSlider() {
           min={0}
           step={1}
           max={duration}
-          onChange={(_, value) => setPosition(value)}
+          onChange={(_, value) => seek(value)}
           sx={(t) => ({
             color: 'rgba(0,0,0,0.87)',
             height: 4,
@@ -199,9 +194,15 @@ export default function MusicPlayerSlider() {
           })}
         >
           <IconButton aria-label="previous song">
-            <FastRewindRounded fontSize="large" onClick={prevSong} />
+            <FastRewindRounded fontSize="large" onClick={()=>{
+              setPaused(pause)
+              prevSong()
+              }} />
           </IconButton>
-          <IconButton
+
+
+
+          {/* <IconButton
             aria-label={paused ? 'play' : 'pause'}
             onClick={() => setPaused(!paused)}
           >
@@ -210,9 +211,33 @@ export default function MusicPlayerSlider() {
             ) : (
               <PauseRounded onClick={pauseSong} sx={{ fontSize: '3rem' }} />
             )}
+          </IconButton> */}
+
+
+           <IconButton
+            aria-label={isPlaying ? 'pause' : 'play'}
+            onClick={
+              ()=>{
+                togglePlay()
+              }
+            }
+          >
+            {!isPlaying ? (
+              <PlayArrowRounded sx={{ fontSize: '3rem' }} />
+            ) : (
+              <PauseRounded sx={{ fontSize: '3rem' }} />
+            )}
           </IconButton>
+
+
+
+
+
           <IconButton aria-label="next song">
-            <FastForwardRounded fontSize="large" onClick={nextSong}/>
+            <FastForwardRounded fontSize="large" onClick={()=>{
+              setPaused(pause)
+              nextSong()
+            }}/>
           </IconButton>
         </Box>
         <Stack
@@ -233,7 +258,11 @@ export default function MusicPlayerSlider() {
           <VolumeDownRounded />
           <Slider
             aria-label="Volume"
-            defaultValue={30}
+            value={volume}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(_,value)=>changeVolume(value)}
             sx={(t) => ({
               color: 'rgba(0,0,0,0.87)',
               '& .MuiSlider-track': {
@@ -255,6 +284,7 @@ export default function MusicPlayerSlider() {
               }),
             })}
           />
+          <TinyText>{Math.round(volume*100)}</TinyText>
           <VolumeUpRounded />
         </Stack>
       </Widget>
