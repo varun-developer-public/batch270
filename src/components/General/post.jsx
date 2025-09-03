@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Post() {
     const [post, setPost] = useState({
@@ -7,6 +8,7 @@ function Post() {
     });
     const [preview, setPreview] = useState(null);
     const [savedPosts, setSavedPosts] = useState([]);
+    const nav = useNavigate()
 
 
     useEffect(()=>{
@@ -32,6 +34,7 @@ function Post() {
         });
         setPreview(null);
         alert("Image Submitted Successfully");
+        nav("/postList");
     }
 
     const handleCaptionChange = (e)=>{

@@ -14,6 +14,9 @@ import MusicPlayerSlider from "./components/AudioPlayers/player";
 import Forms from "./components/Forms/forms";
 import Post from "./components/General/post";
 import PostList from "./components/General/postList";
+import { Route, Routes } from "react-router-dom";
+import HomeDashboard from "./pages/homeDashboard";
+import NavBar from "./components/Navbar/navbar";
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -51,8 +54,18 @@ function Home() {
     // <Forms/>
 <>
     
-    <Post/>
-    <PostList/>
+    <NavBar/>
+
+      <Routes>
+        <Route exact path="/" element={<HomeDashboard/>}/>
+        <Route path="/postList" element={<PostList/>}/>
+        <Route path="/createPost" element={<Post/>}/>
+      </Routes>
+
+
+
+
+
 </>
   );
 }

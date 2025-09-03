@@ -5,22 +5,46 @@ function PostList() {
     useEffect(()=>{
         const posts = JSON.parse(localStorage.getItem("posts")) || [];
         setSavedPosts(posts)
-    })
+    },[])
+
+    const handleDelete = (index)=>{
+       const updatesPost = savedPosts.filter((_,i)=> i !== index)
+       setSavedPosts(updatesPost);
+       localStorage.setItem("posts", JSON.stringify(updatesPost));
+    }
+
+
+
   return (
-    <div className='flex flex-col items-center gap-4 mt-10 bg-amber-100 h-screen w-full'>
-        <h1 className='text-3xl'>Posts </h1>  
-        {savedPosts.length === 0 &&  <div>
-            No Posts Available
-        </div>}
-        {savedPosts.map((post, index)=>(
-            <div key={index} className='border p-4 rounded-lg shadow-lg bg-white w-1/3'>
-                <img src={post.image} alt={`Post ${index + 1}`} className='w-full h-64 object-cover rounded'/>
-                <p className='mt-2 text-gray-700'>{post.caption}</p>
-            </div>
-            )
-        )}
-       
+<div className="min-h-screen w-full bg-amber-100 py-10 px-4">
+  <div className="flex flex-col items-center gap-6 max-w-6xl mx-auto">
+    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">Posts</h1>
+
+    {savedPosts.length === 0 && (
+      <div className="text-gray-600 text-lg">No Posts Available</div>
+    )}
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      {savedPosts.map((post, index) => (
+        <div
+          key={index}
+          className="border rounded-2xl shadow-md bg-white overflow-hidden transition hover:shadow-xl"
+        >
+          <img
+            src={post.image}
+            alt={`Post ${index + 1}`}
+            className="w-full h-56 sm:h-64 object-cover"
+          />
+          <div className="p-4">
+            <p className="text-gray-700 text-base">{post.caption}</p>
+            <i className="fa-solid fa-trash cursor-pointer" style={{color: '#e32672'}} onClick={()=>handleDelete(index)}></i>
+          </div>
+        </div>
+      ))}
     </div>
+  </div>
+</div>
+
   )
 }
 
