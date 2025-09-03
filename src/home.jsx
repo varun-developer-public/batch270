@@ -12,6 +12,8 @@ import SongList from "./components/AudioPlayers/SongList";
 import PlayerControls from "./components/AudioPlayers/player";
 import MusicPlayerSlider from "./components/AudioPlayers/player";
 import Forms from "./components/Forms/forms";
+import Post from "./components/General/post";
+import PostList from "./components/General/postList";
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -46,7 +48,12 @@ function Home() {
     //   </div>
     // </AudioProvider>
 
-    <Forms/>
+    // <Forms/>
+<>
+    
+    <Post/>
+    <PostList/>
+</>
   );
 }
 
