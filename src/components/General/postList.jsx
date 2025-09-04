@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function PostList() {
     const [savedPosts, setSavedPosts] = useState([]);
@@ -39,6 +40,7 @@ function PostList() {
             <p className="text-gray-700 text-base">{post.caption}</p>
             <i className="fa-solid fa-trash cursor-pointer" style={{color: '#e32672'}} onClick={()=>handleDelete(index)}></i>
           </div>
+          <Link to={`/postDetail/${index}`}><div className='text-right mb-3 mr-3 cursor-pointer text-blue-900 font-bold'>View Details</div></Link>
         </div>
       ))}
     </div>

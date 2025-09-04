@@ -17,6 +17,9 @@ import PostList from "./components/General/postList";
 import { Route, Routes } from "react-router-dom";
 import HomeDashboard from "./pages/homeDashboard";
 import NavBar from "./components/Navbar/navbar";
+import PostDetail from "./components/General/postDetail";
+import ProtectedRoute from "./components/General/protectedRoute";
+import LoginPage from "./components/General/login";
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -52,21 +55,22 @@ function Home() {
     // </AudioProvider>
 
     // <Forms/>
-<>
-    
-    <NavBar/>
+    <>
+      <NavBar />
 
       <Routes>
-        <Route exact path="/" element={<HomeDashboard/>}/>
-        <Route path="/postList" element={<PostList/>}/>
-        <Route path="/createPost" element={<Post/>}/>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="*" element={<h1>404</h1>} />
+
+        <Route element={<ProtectedRoute />} >
+                  <Route path="/" element={<HomeDashboard />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/postList" element={<PostList />} />
+                  <Route path="/postDetail/:index" element={<PostDetail />} />
+                  <Route path="/createPost" element={<Post />} />
+        </Route>
       </Routes>
-
-
-
-
-
-</>
+    </>
   );
 }
 
