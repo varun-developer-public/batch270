@@ -1,18 +1,24 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 function PostList() {
     const [savedPosts, setSavedPosts] = useState([]);
-    useEffect(()=>{
-        const posts = JSON.parse(localStorage.getItem("posts")) || [];
-        setSavedPosts(posts)
-    },[])
+    // using local storage to get the posts
+    // useEffect(()=>{
+    //   const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    //   setSavedPosts(posts)
+    // },[])
+    // const handleDelete = (index)=>{
+    //    const updatesPost = savedPosts.filter((_,i)=> i !== index)
+    //    setSavedPosts(updatesPost);
+    //    localStorage.setItem("posts", JSON.stringify(updatesPost));
+    // }
 
-    const handleDelete = (index)=>{
-       const updatesPost = savedPosts.filter((_,i)=> i !== index)
-       setSavedPosts(updatesPost);
-       localStorage.setItem("posts", JSON.stringify(updatesPost));
-    }
+    useEffect(() => {
+      // fetch('https://dummyjson.com/products').then(res=>res.json()).then(data=>setSavedPosts(data.products)).catch(err=>console.log("This is"))
+      axios.get('https://dummyjson.com/products').then(res=>setSavedPosts(res.data.products)).catch(err=>console.log(err))
+    })
 
 
 
@@ -31,16 +37,19 @@ function PostList() {
           key={index}
           className="border rounded-2xl shadow-md bg-white overflow-hidden transition hover:shadow-xl"
         >
+          <p className="text-gray-700 text-base">{post.title}</p>
           <img
-            src={post.image}
+            src={post.thumbnail}
             alt={`Post ${index + 1}`}
+            loading='lazy'
             className="w-full h-56 sm:h-64 object-cover"
           />
           <div className="p-4">
-            <p className="text-gray-700 text-base">{post.caption}</p>
+            <p className="text-gray-700 text-base">{post.description}</p>
+            <p>Price {post.price}</p>
             <i className="fa-solid fa-trash cursor-pointer" style={{color: '#e32672'}} onClick={()=>handleDelete(index)}></i>
           </div>
-          <Link to={`/postDetail/${index}`}><div className='text-right mb-3 mr-3 cursor-pointer text-blue-900 font-bold'>View Details</div></Link>
+          {/* <Link to={`/postDetail/${index}`}><div className='text-right mb-3 mr-3 cursor-pointer text-blue-900 font-bold'>View Details</div></Link> */}
         </div>
       ))}
     </div>

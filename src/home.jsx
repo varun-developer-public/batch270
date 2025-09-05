@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Welcome from "./components/General/welcome";
 import NavBar2 from "./components/Navbar/NavBar2";
 import ProductList from "./components/products/productList";
@@ -20,6 +20,11 @@ import NavBar from "./components/Navbar/navbar";
 import PostDetail from "./components/General/postDetail";
 import ProtectedRoute from "./components/General/protectedRoute";
 import LoginPage from "./components/General/login";
+
+const HomeDash = lazy(() => import("./pages/homeDashboard"));
+const Dash = lazy(() => import("./components/Dashboard/dashboard"));
+const PostListt = lazy(() => import("./components/General/postList"));
+
 function Home() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -57,19 +62,26 @@ function Home() {
     // <Forms/>
     <>
       <NavBar />
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="*" element={<h1>404</h1>} />
 
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<h1>404</h1>} />
-
-        <Route element={<ProtectedRoute />} >
-                  <Route path="/" element={<HomeDashboard />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/postList" element={<PostList />} />
+          {/* <Route element={<ProtectedRoute />} >
+                  <Route path="/" element={<HomeDash/>} />
+                  <Route path="/dashboard" element={<Dash/>} />
+                  <Route path="/postList" element={<PostListt />} />
                   <Route path="/postDetail/:index" element={<PostDetail />} />
                   <Route path="/createPost" element={<Post />} />
-        </Route>
-      </Routes>
+        </Route> */}
+
+          <Route path="/" element={<HomeDash />} />
+          <Route path="/dashboard" element={<Dash />} />
+          <Route path="/postList" element={<PostListt />} />
+          <Route path="/postDetail/:index" element={<PostDetail />} />
+          <Route path="/createPost" element={<Post />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
