@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
 
 function NavBar() {
-  const { user } = useAuth();
+ const count = useSelector(state =>state.count)
+  // const { user } = useAuth();
   return (
     <header className="w-full shadow-md">
       {/* Top Bar */}
@@ -12,17 +14,17 @@ function NavBar() {
           <a href="/" className="flex items-center gap-2">
             <img src="/instagram-logo.jpg" alt="Logo" className="h-8" />
             <span className="text-xl font-semibold text-gray-800 dark:text-white">
-              Instagram Clone
+              Instagram Clone {count}
             </span>
           </a>
 
           {/* Right Side Links */}
           <div className="flex items-center gap-6 text-sm">
-            {user && (
+            {/* {user && (
               <span className="text-gray-600 dark:text-gray-300 hover:underline cursor-default">
                 Welcome, {user.name}
               </span>
-            )}
+            )} */}
             <Link
               to="/login"
               className="text-gray-600 dark:text-gray-300 hover:underline"

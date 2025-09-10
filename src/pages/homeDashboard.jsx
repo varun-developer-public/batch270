@@ -1,8 +1,13 @@
 import React from 'react'
 import NavBar from '../components/Navbar/navbar'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function HomeDashboard() {
+
+
+  const count = useSelector(state =>state.count)
+  const dispatch = useDispatch()
   return (
 <div className="min-h-screen bg-gradient-to-br from-amber-100 to-amber-200 p-6">
   <div className="max-w-4xl mx-auto">
@@ -16,6 +21,9 @@ function HomeDashboard() {
         Manage your posts effortlessly — create new posts or explore what you’ve already shared.
       </p>
 
+      <h1>counter:{count}</h1>
+      <button onClick={()=> dispatch({type:"INCREMENT"})}>+</button>
+      <button onClick={()=> dispatch({type:"DECREMENT"})}>-</button>
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 mt-4">
         <Link to={"/postList"}>
